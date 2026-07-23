@@ -9,8 +9,10 @@ browser, so they can close and resume.
 Originally built for H&E tissue-type review, but **the label set is whatever you pass in** — use it
 for tissue type, stain QC, biopsy adequacy, artifact flagging, or any per-image call.
 
-> **Try it:** clone the repo and open [`examples/demo_review.html`](examples/demo_review.html) in any
-> browser — a live demo on synthetic (non-patient) tiles. Click a card to zoom, press **A** / a label /
+**▶ [Try the live demo](https://stella-123-spu.github.io/slide-review-tool/examples/demo_review.html)** — no install, runs in your browser.
+
+> **Or run it locally:** clone the repo and open [`examples/demo_review.html`](examples/demo_review.html) in any
+> browser — a demo on synthetic (non-patient) tiles. Click a card to zoom, press **A** / a label /
 > **U**, then **⬇ download CSV**.
 
 ## Why it's convenient
