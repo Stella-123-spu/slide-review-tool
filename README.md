@@ -9,8 +9,9 @@ browser, so they can close and resume.
 Originally built for H&E tissue-type review, but **the label set is whatever you pass in** — use it
 for tissue type, stain QC, biopsy adequacy, artifact flagging, or any per-image call.
 
-![what it does: image cards, a pre-label, Agree / correction buttons](examples/demo_review.html)
-*(open `examples/demo_review.html` in a browser to see a live synthetic demo)*
+> **Try it:** clone the repo and open [`examples/demo_review.html`](examples/demo_review.html) in any
+> browser — a live demo on synthetic (non-patient) tiles. Click a card to zoom, press **A** / a label /
+> **U**, then **⬇ download CSV**.
 
 ## Why it's convenient
 
