@@ -37,7 +37,8 @@ header h1{font-size:16px;margin:0 0 6px}
 .card img{width:100%;height:190px;object-fit:contain;background:#fff;cursor:zoom-in;border-radius:4px}
 .meta{font-size:12px;margin:6px 2px 4px}.p{color:#666}
 .tag{padding:1px 6px;border-radius:4px;color:#fff;font-size:11px}
-.desc{font-size:12px;color:#333;background:#f7f9fb;border-left:3px solid #90a4ae;padding:4px 8px;margin:0 2px 7px;border-radius:3px;font-style:italic;max-height:64px;overflow:auto}
+.desc{font-size:12px;color:#333;background:#f7f9fb;border-left:3px solid #90a4ae;padding:4px 8px;margin:0 2px 7px;border-radius:3px;font-style:italic;height:2.8em;overflow:auto}
+.desc.empty{background:transparent;border-left-color:transparent}
 .agree{width:100%;padding:10px;margin-bottom:6px;border:2px solid #2e7d32;background:#eaf6ea;color:#1b5e20;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer}
 .agree.on{background:#2e7d32;color:#fff}
 .ov{display:flex;flex-wrap:wrap;gap:4px}.ovl{font-size:11px;color:#999;margin:1px 2px 4px}
@@ -120,14 +121,21 @@ cards().forEach(initCard); sortBy(DEFAULT_SORT); if(cards().length)focus(cards()
 """
 
 
-def card_html(item, labels, b64):
-    """item: dict with id, prelabel(optional), description(optional), meta(optional), order(optional)."""
+def card_html(item, labels, b64, reserve_desc=False):
+    """item: dict with id, prelabel(optional), description(optional), meta(optional), order(optional).
+    reserve_desc: if True, cards without a description still reserve the (invisible) description
+    slot so the Agree/label buttons line up across a row."""
     iid = _esc(item["id"]); pre = item.get("prelabel") or ""; pre_e = _esc(pre)
     default = pre_e  # agree accepts the pre-label; '' if none
     meta = item.get("meta") or ""; desc = item.get("description") or ""
     tag = f' · <span class="tag" data-lab="{pre_e}">{pre_e}</span>' if pre else ""
     meta_h = f' <span class="p">{_esc(meta)}</span>' if meta else ""
-    desc_h = f'<div class="desc">"{_esc(desc)}"</div>' if desc else ""
+    if desc:
+        desc_h = f'<div class="desc">"{_esc(desc)}"</div>'
+    elif reserve_desc:
+        desc_h = '<div class="desc empty"></div>'
+    else:
+        desc_h = ""
     agree_h = (f'<button class="agree" onclick="agree(\'{iid}\')">✓ Agree — {pre_e}'
                f' <span class="k">A</span></button>') if pre else ""
     btns = "".join(

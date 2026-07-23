@@ -91,6 +91,8 @@ def main():
     def _get(row, name):
         return row[name] if name in df.columns and pd.notna(row[name]) else ""
 
+    any_desc = ("description" in df.columns and
+                df["description"].astype(str).str.strip().replace("nan", "").ne("").any())
     cards, ok, miss = [], 0, 0
     for _, r in df.iterrows():
         img = str(r[a.image_col])
@@ -104,7 +106,7 @@ def main():
         item = {"id": _get(r, a.id_col), "prelabel": _get(r, "prelabel"),
                 "description": _get(r, "description"), "meta": _get(r, "meta"),
                 "order": int(r["order"]) if "order" in df.columns and pd.notna(r["order"]) else ok}
-        cards.append(tpl.card_html(item, labels, b64)); ok += 1
+        cards.append(tpl.card_html(item, labels, b64, reserve_desc=any_desc)); ok += 1
         if ok % 100 == 0:
             print(f"  ...{ok} images")
     print(f"embedded {ok}, skipped {miss}")
