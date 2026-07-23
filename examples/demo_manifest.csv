@@ -1,0 +1,7 @@
+id,image,prelabel,description
+tile_01,images/tile_01.png,tumor,"Dense sheets of atypical cells, high N:C ratio."
+tile_02,images/tile_02.png,benign,"Bland glandular tissue, no atypia."
+tile_03,images/tile_03.png,stroma,"Fibrous stroma, sparse cellularity."
+tile_04,images/tile_04.png,tumor,Invasive nests with desmoplastic reaction.
+tile_05,images/tile_05.png,benign,
+tile_06,images/tile_06.png,stroma,Adipose + collagen; few nuclei.

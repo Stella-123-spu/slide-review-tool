@@ -1,0 +1,24 @@
+# ---- never commit patient-derived data ----
+# built review pages embed images (base64) -> treat as controlled data.
+# ignore all built pages EXCEPT the synthetic demo.
+*.html
+!examples/demo_review.html
+
+# data folders / caches / whole-slide images
+/data/
+/thumbs/
+/thumbnails/
+*.svs
+*.ndpi
+*.scn
+*.mrxs
+*.vms
+*.vmu
+manifest*.csv
+!examples/demo_manifest.csv
+
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
